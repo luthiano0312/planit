@@ -3,6 +3,10 @@
 > Registro da sessão `/grill-me` sobre `01-requisitos/algoritmo-priorizacao.md` e documentos relacionados
 > (`novas_decisoes.md`, `backlog.md`, `escopo.md`). Não substitui esses documentos — serve como
 > rastro de decisão a ser incorporado neles.
+>
+> **Atualização:** os dois itens da seção "Em aberto" abaixo foram resolvidos em uma segunda
+> sessão `/grill-me`, registrada na íntegra na seção "Em aberto — resolvido" ao final deste
+> documento. As seções "Contexto" e "Decisões tomadas" (1–9) permanecem como estavam, sem mudança.
 
 ## Contexto
 
@@ -78,21 +82,71 @@ O usuário pode concluir mesmo com dependência pendente, desde que confirme cie
 
 ---
 
-## Em aberto (adiado conscientemente)
+## Em aberto — resolvido
 
-- **RF-013 (hierarquia de projetos/sub-tarefas)** — segue fora do MVP, sem mudança nesta sessão.
-  Registrado como **risco conhecido**: o algoritmo fechado aqui (urgência × importância + piso de
-  3 dias) funciona bem para tarefas soltas e mal para projetos grandes sem next-action clara — que
-  é justamente o cenário mais ligado ao sintoma original "não saber por onde começar". Esse risco
-  é aceitável apenas enquanto RF-013 continuar fora de escopo; se for reaberto no futuro, o
-  algoritmo de priorização deve ser revisitado.
-- **Valores exatos dos limiares de importância** (Etapa 1 — "≥ limiar_importância") e **parâmetros
-  da curva exponencial de desempate** (Etapa 2) seguem para calibração posterior com uso real,
-  como já registrado em `backlog.md` §6. Sem mudança nesta sessão.
+> Os dois itens abaixo estavam listados como "adiado conscientemente" na versão anterior deste
+> documento. Foram resolvidos em uma segunda sessão `/grill-me`.
+
+### 10. RF-013 (hierarquia de projetos/sub-tarefas) — confirmado fora do MVP
+
+**Decisão:** RF-013 continua fora do MVP.
+
+**Raciocínio:** diferente da primeira rodada (que adiava por falta de dados de uso real), a razão
+desta vez é explícita: priorizar velocidade de validação da ideia central do sistema. O objetivo
+do MVP é ser o mais básico possível para testar a hipótese principal (reduzir atrito + apontar a
+próxima ação), não cobrir todos os casos de uso desde o início.
+
+**Mitigação do risco documentado:** o risco já registrado no item "Em aberto" original (algoritmo
+funciona mal para projetos grandes sem next-action clara — justamente o sintoma central que
+motivou o Planit) é aceito, com um paliativo: RF-014 (dependência simples, uma por tarefa, sem
+cadeia complexa) cobre o caso de uso original que motivou a ideia de hierarquia (etapa importante
+travada atrás de uma mais fácil). Cadastra-se cada etapa do projeto como tarefa separada,
+encadeada por dependência (A depende de B depende de C).
+
+**Limitação aceita conscientemente:** isso não é hierarquia de verdade — não há entidade "projeto"
+que agrupe tarefas nem visão de progresso agregado. Só resolve o efeito prático de "não deixar a
+etapa errada aparecer antes da hora".
+
+**Gatilho para reabrir:** se, no uso real, o cadastro manual de cada etapa como tarefa separada se
+mostrar ele mesmo um atrito relevante, ou se a falta de visão agregada de progresso do projeto se
+tornar um problema sentido na prática.
+
+### 11. Calibração dos limiares e da curva exponencial — valores iniciais definidos
+
+**Decisão:** o MVP não vai para produção com limiares indefinidos. Valores iniciais provisórios
+(chute deliberado e documentado como não-calibrado) são necessários porque o RF-002 não é
+implementável sem algum número concreto — a calibração fina com dados reais, mencionada em
+`backlog.md` §6, continua sendo o objetivo de longo prazo, mas não pode bloquear o MVP.
+
+**Etapa 1 — Classificação em quadrante:**
+- `limiar_importância`: importância ≥ 4 (escala 1–5) → "importante"
+- `limiar_urgência`: percentual do bloco_de_tempo consumido ≥ 60% → "urgente"
+- Piso de dias absolutos (itens 3/4/6 acima) continua sendo avaliado **antes** do percentual, sem
+  mudança.
+
+**Etapa 2 — Desempate dentro do quadrante:**
+- `score = importância × e^(k × urgência_percentual)`, com **k = 2**
+
+**Validação do `k = 2`:** testado contra um cenário concreto trazido pelo usuário — para uma
+tarefa de importância 5, cadastrada com um mês (30 dias) de antecedência, a expectativa é que ela
+esteja "no topo de prioridade" quando faltar uma semana para o prazo (23/30 dias consumidos ≈
+76,7% de urgência).
+- Com `k=2`: score dessa tarefa (≈ 23,2) já ultrapassa uma tarefa de importância 3 no próprio dia
+  do prazo dela (100% de urgência, score ≈ 22,2) — bate com a expectativa do usuário e com a
+  filosofia registrada em `algoritmo-priorizacao.md` §2 ("a importância desloca o ponto de
+  virada").
+- Testado também `k=1` (margem folgada demais) e `k=3` (inverte o resultado, contradizendo a
+  intuição do usuário) — `k=2` foi o único valor que passou no teste de sanidade com margem
+  razoável.
+
+**Natureza do valor:** `k=2` não é definitivo — é ponto de partida para o MVP, sujeito a
+recalibração com uso real, como já previsto desde a decisão original em
+`algoritmo-priorizacao.md` §2 ("parâmetros exatos da curva... ficam para calibração posterior").
 
 ---
 
 ## Próximo passo sugerido
-Incorporar as decisões 3–9 acima em `01-requisitos/algoritmo-priorizacao.md` (seções 2 e 3) e em
-`escopo.md`/`backlog.md` (novo estado "compromisso pendente" como bucket, análogo ao tratamento já
-dado à dependência pendente).
+Incorporar os itens 10 e 11 acima em `01-requisitos/algoritmo-priorizacao.md` (fechar os limiares
+da Etapa 1 e o `k=2` da Etapa 2, hoje marcados como "a calibrar") e em `escopo.md`/`backlog.md`
+(RF-013 permanece Could/fora do MVP, sem mudança de status — só a razão registrada mudou; nenhuma
+outra atualização de escopo necessária).
