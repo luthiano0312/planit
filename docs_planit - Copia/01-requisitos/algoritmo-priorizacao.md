@@ -26,7 +26,7 @@ Por isso o cálculo é feito em duas etapas independentes:
 - **Limiares fechados para o MVP** (chute deliberado, documentado como não-calibrado — ver `audit.md` item 11; a calibração fina com uso real segue como trabalho futuro, fora desta fase):
   - `limiar_importância`: importância ≥ 4 → "importante"
   - `limiar_urgência` (percentual): bloco_de_tempo consumido ≥ 60% → "urgente"
-  - `limiar_piso` (dias absolutos): dias_restantes ≤ 3 → "urgente" (avaliado antes do percentual, ver item 1 acima). **Calibração do valor 3:** escolhido pela capacidade real de execução do usuário — a maioria das tarefas cabe em ~3 dias dada sua disponibilidade média. Falso positivos (sinalizar como urgente algo que na prática é rápido) são aceitos conscientemente como custo baixo, preferíveis ao risco de uma tarefa passar despercebida (ver `audit.md` item 4).
+  - `limiar_piso` (dias absolutos): dias_restantes ≤ 3 → "urgente" (avaliado antes do percentual, ver item 1 acima)
 - A combinação binária dos dois valores (urgência e importância) define o quadrante:
   1. Urgente e importante (Eat the Frog)
   2. Urgente e pouco importante

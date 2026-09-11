@@ -19,13 +19,13 @@
 
 Avaliadas e rejeitadas na sessão de revisão crítica registrada em `audit.md` — mantidas aqui para não serem reabertas sem motivo:
 
-- **Machine Learning para aprender ou sugerir a prioridade de tarefas**: o sinal de treino (aceitar/corrigir score sugerido) é teoricamente válido — a inviabilidade é apenas prática: a ~5-6 tarefas/semana, juntar as centenas/milhares de exemplos necessários levaria de 1 a 3+ anos (estimativa otimista), muito mais que o tempo necessário para uma fórmula determinística já funcionar bem desde o dia 1 (`audit.md` item 1). Pode ser reaberto no futuro se o sistema seguir em uso por anos e o problema ainda incomodar.
+- **Machine Learning para aprender ou sugerir a prioridade de tarefas**: inviável no ritmo de uso pessoal do sistema (~5-6 tarefas/semana); juntar dados suficientes levaria anos, muito mais que o tempo necessário para uma fórmula determinística já funcionar bem desde o dia 1 (`audit.md` item 1). Pode ser reaberto no futuro se o sistema seguir em uso por anos e o problema ainda incomodar.
 - **Novos campos estruturados no cadastro** (tempo estimado, dificuldade, impacto, categoria): contrariariam RNF-001 (baixo atrito de cadastro), que é a causa central que motivou o sistema inteiro. Casos como "tarefa rápida furando uma importante" já são cobertos manualmente pela escolha Quick Win / Eat the Frog dentro do quadrante (`audit.md` item 2).
 
 ## Out of scope (nesta fase — candidatos a MVP posterior ou fase de UI)
 
 - Visão de calendário com distribuição automática de horários (RF-005, RF-006) — mecanismo ainda não está claro (ver `backlog.md`, seção "Perguntas em aberto").
-- Hierarquia de tarefas em sub-tarefas/projetos (RF-013) — confirmada fora do MVP por decisão explícita de escopo (velocidade de validação da hipótese central do sistema), mitigada por RF-014 (dependência simples); ver `audit.md` item 10 (limitação da mitigação e gatilho de reabertura registrados na rationale de RF-013 no `backlog.md`).
+- Hierarquia de tarefas em sub-tarefas/projetos (RF-013) — confirmada fora do MVP por decisão explícita de escopo (velocidade de validação da hipótese central do sistema), mitigada por RF-014 (dependência simples); ver `audit.md` item 10.
 - Revisão espaçada / flashcards e protocolo fixo para "não sei o que fazer" — mencionados no relato, mas nunca formalizados como caso de uso.
 - Múltiplos usuários / autenticação — sistema é de uso individual (RNF-003).
 - Notificações (dentro do app ou do SO) para lembretes, hábitos pendentes ou tarefas em "compromisso pendente" — não decidido.
