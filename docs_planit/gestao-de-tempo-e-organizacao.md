@@ -155,3 +155,16 @@ Isso é simples o suficiente para continuar usando depois da empolgação inicia
 **Uma distinção que considero especialmente útil:** organização não é preencher sua agenda inteira. É reduzir a incerteza sobre **o que fazer, quando fazer e o que pode esperar**.
 
 !eu concordo parcialmente, eu acho que nesse ponto, o melhor a se fazer e rediscutir esses pontos pra chegar em um consenso
+
+
+
+
+!eventos que se repetem
+
+!visualização em semana e em mes, 
+
+!remover a ideia de priorização automatica, eu mesmo vou saber o que deve ser prioridade, porem isso deveria ser feito em um momento adequado, ou seja, quando eu não estiver cansado, ou quando eu estiver relaxado, e isso não necesariamente deve ser todo dia
+
+!Implementation intention poderia virar uma camada/funcionalidade do software,  tipo uma tela em que me diz o que eu tenho pra fazer hoje, tipo uma visualização do dia
+
+!não trabalhar com horarios estritos para tarefas com data e hora marcadas, então seria so data marcada, pois assim eu sei o que sera feito no dia, mas não o horario, mas eu ainda poderia decidir a ordem a qual eu vou fazer as coisas, tipo descansar -> atividade de matematica -> relatorio de fiscia -> jantar, tem a ordem mas não os horarios 
